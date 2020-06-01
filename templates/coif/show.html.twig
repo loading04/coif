@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coif{% endblock %}
+
+{% block body %}
+    <h1>Coif</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ coif.id }}</td>
+            </tr>
+            <tr>
+                <th>NomPro</th>
+                <td>{{ coif.NomPro }}</td>
+            </tr>
+            <tr>
+                <th>PrenomPro</th>
+                <td>{{ coif.PrenomPro }}</td>
+            </tr>
+            <tr>
+                <th>NomSalon</th>
+                <td>{{ coif.NomSalon }}</td>
+            </tr>
+            <tr>
+                <th>NombreChaise</th>
+                <td>{{ coif.NombreChaise }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ coif.Ville }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ coif.createdAt ? coif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ coif.updatedAt ? coif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ coif.Adresse }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ coif.Description }}</td>
+            </tr>
+            <tr>
+                <th>PhotoCoif</th>
+                <td>{{ coif.PhotoCoif }}</td>
+            </tr>
+            <tr>
+                <th>Publish</th>
+                <td>{{ coif.Publish ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('coif_index') }}">back to list</a>
+
+    <a href="{{ path('coif_edit', {'id': coif.id}) }}">edit</a>
+
+    {{ include('coif/_delete_form.html.twig') }}
+{% endblock %}

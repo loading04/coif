@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coif index{% endblock %}
+
+{% block body %}
+    <h1>Coif index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomPro</th>
+                <th>PrenomPro</th>
+                <th>NomSalon</th>
+                <th>NombreChaise</th>
+                <th>Ville</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>Adresse</th>
+                <th>Description</th>
+                <th>PhotoCoif</th>
+                <th>Publish</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for coif in coifs %}
+            <tr>
+                <td>{{ coif.id }}</td>
+                <td>{{ coif.NomPro }}</td>
+                <td>{{ coif.PrenomPro }}</td>
+                <td>{{ coif.NomSalon }}</td>
+                <td>{{ coif.NombreChaise }}</td>
+                <td>{{ coif.Ville }}</td>
+                <td>{{ coif.createdAt ? coif.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ coif.updatedAt ? coif.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ coif.Adresse }}</td>
+                <td>{{ coif.Description }}</td>
+                <td>{{ coif.PhotoCoif }}</td>
+                <td>{{ coif.Publish ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('coif_show', {'id': coif.id}) }}">show</a>
+                    <a href="{{ path('coif_edit', {'id': coif.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('coif_new') }}">Create new</a>
+{% endblock %}
