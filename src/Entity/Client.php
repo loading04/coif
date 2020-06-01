@@ -27,10 +27,7 @@ class Client
      */
     private $prenom;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $mail;
+
 
     /**
      * @ORM\Column(type="integer")
@@ -41,6 +38,17 @@ class Client
      * @ORM\Column(type="string", length=255)
      */
     private $ville;
+
+    /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     */
+    private $mail;
+
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
 
     public function getId(): ?int
     {
@@ -71,17 +79,7 @@ class Client
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
 
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
 
     public function getNumero(): ?int
     {
@@ -109,5 +107,41 @@ class Client
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
+
+        return $this;
     }
 }

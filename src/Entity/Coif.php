@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\CoifRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use
+
 
 /**
  * @ORM\Entity(repositoryClass=CoifRepository::class)
@@ -44,7 +44,15 @@ class Coif
      * @ORM\Column(type="string", length=255)
      */
     private $Ville;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updatedAt;
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -56,16 +64,35 @@ class Coif
     private $Description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $LogoCoif;
+    private $spec;
+
+
+
+
 
     /**
-     * @Vich\UploadableField(mapping="coif_pic",fileNameProperty="LogoCoif")
+     * @return mixed
      */
-    private $LogoFile;
+    public function getPhotoFile()
+    {
+        return $this->PhotoFile;
+    }
 
+    /**
+     * @param mixed $PhotoFile
+     * @throws \Exception
+     */
+    public function setPhotoFile($PhotoFile): void
+    {
+        $this->PhotoFile = $PhotoFile;
 
+        if($PhotoFile)
+        {
+            $this->updatedAt = new \DateTime();
+        }
+    }
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -73,7 +100,7 @@ class Coif
     private $PhotoCoif;
 
     /**
-     * @Vich\UploadableField(mapping="coif_pic",fileNameProperty="PhotoCoif")
+     * @Vich\UploadableField(mapping="coif_pic", fileNameProperty="PhotoCoif")
      */
     private $PhotoFile;
 
@@ -81,6 +108,15 @@ class Coif
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $Publish;
+
+
+    public function __construct()
+    {
+
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->Publish = false;
+    }
 
     public function getId(): ?int
     {
@@ -171,24 +207,16 @@ class Coif
         return $this;
     }
 
-    public function getLogoCoif(): ?string
-    {
-        return $this->LogoCoif;
-    }
 
-    public function setLogoCoif(string $LogoCoif): self
-    {
-        $this->LogoCoif = $LogoCoif;
 
-        return $this;
-    }
+
 
     public function getPhotoCoif(): ?string
     {
         return $this->PhotoCoif;
     }
 
-    public function setPhotoCoif(string $PhotoCoif): self
+    public function setPhotoCoif(?string $PhotoCoif): self
     {
         $this->PhotoCoif = $PhotoCoif;
 
@@ -210,5 +238,41 @@ class Coif
     public function __toString()
     {
         return $this->NomPro;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getSpec(): ?string
+    {
+        return $this->spec;
+    }
+
+    public function setSpec(?string $spec): self
+    {
+        $this->spec = $spec;
+
+        return $this;
     }
 }
