@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\CoifRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BarberController extends AbstractController
 {
     /**
-     * @Route("/barber", name="barber")
+     * @Route("/barber", name="barber" ,  methods={"GET"})
      */
-    public function index()
+    public function index(CoifRepository $coifRepository): Response
     {
-        return $this->render('barber/index.html.twig', [
-            'controller_name' => 'BarberController',
+        return $this->render('coif/index.html.twig', [
+            'coifs' => $coifRepository->findByExampleField("Femme"),
         ]);
     }
 }

@@ -19,14 +19,14 @@ class CoifRepository extends ServiceEntityRepository
         parent::__construct($registry, Coif::class);
     }
 
-    // /**
-    //  * @return Coif[] Returns an array of Coif objects
-    //  */
-    /*
+     /**
+    * @return Coif[] Returns an array of Coif objects
+    */
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
+            ->andWhere('c.spec = :val')
             ->setParameter('val', $value)
             ->orderBy('c.id', 'ASC')
             ->setMaxResults(10)
@@ -34,7 +34,7 @@ class CoifRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Coif
